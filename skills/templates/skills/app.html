@@ -1,0 +1,14 @@
+<ul>
+    {% for skill in all_skills %}
+    {% if not skill.is_sub %}
+    <li>{{skill.name}}</li>
+        {% if skill.subskills %}
+        <ul>
+            {% for sub in skill.subskills.all%}
+            <li>{{sub.name}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>

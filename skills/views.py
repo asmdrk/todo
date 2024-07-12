@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Skill
-from django.views.generic.list import ListView
-
+from django.views import generic
+from django.db.models import F
 
 # Create your views here.
 def index(request):
     return HttpResponse("Hello, world. You're at the index.")
 
 
-def app(request):
-    all_skills = Skill.objects.all()
-    output = ", ".join(s.name for s in all_skills)
-    return HttpResponse(output)
+class appView(generic.ListView):
+    model = Skill
+    context_object_name = "all_skills"
+    template_name = "skills/app.html"
